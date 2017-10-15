@@ -1,0 +1,21 @@
+{
+  "name": "html_crawling3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "cheerio-httpcli": "^0.7.1",
+    "express": "^4.16.2",
+    "jsdom": "^11.3.0",
+    "request": "^2.83.0",
+    "supervisor": "^0.12.0"
+  }
+}
