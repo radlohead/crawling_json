@@ -6109,6 +6109,93 @@ for(let num=0; num<urls.length; num++){
                             json[num]["가맹본부의 일반 현황"][3]["가맹본부 브랜드 및 가맹사업 계열사 수"][temp__th[i]] = temp__td[i];
                         }
                     }
+                    openingDay(){
+                        let temp__th = [];
+                        let temp__td = [];
+
+                        $(`.box_flip:nth-child(2) .table:nth-child(2) thead tr:first-child th`).each(function(){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(2) .table:nth-child(2) thead tr:first-child td`).each(function(){
+                            temp__td.push($(this).text().replace(/\s/g, ''));
+                        });
+                        json[num]["가맹본부의 가맹사업 현황"][0]["가맹사업 개시일"][temp__th[0]] = temp__td[0];
+                    }
+                    headOffice__state(){
+                        let temp__row__th1 = {};
+                        let temp__row__th2 = {};
+                        let temp__vertical__th = {};
+                        let temp__td = [];
+
+                        for(let i=0; i<9; i++){
+                            temp__td[i] = [];
+                        }
+
+                        $(`.box_flip:nth-child(2) .table:nth-child(4) thead tr:first-child th.listOfCntShow`).each(function(){
+                            temp__row__th1[$(this).text()] = {};
+                        });
+                        $(`.box_flip:nth-child(2) .table:nth-child(4) thead tr:nth-child(2) th.listOfCntShow`).each(function(){
+                            temp__row__th2[$(this).text()] = {};
+                        });
+                        $(`.box_flip:nth-child(2) .table:nth-child(4) tbody tr td.noborder`).each(function(){
+                            temp__vertical__th[$(this).text()] = '';
+                        });
+                        for(let i=0; i<9; i++){
+                            $(`.box_flip:nth-child(2) .table:nth-child(4) tbody tr td.listOfCntShow:nth-child(${i+2})`).each(function(){
+                                temp__td[i].push($(this).text().replace(/\s/g, ''));
+                            });
+                        }
+
+                        // console.log(temp__vertical__th, temp__td);
+                        json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"] = temp__row__th1;
+                        let keys = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"]);
+                        const row__th2 = ["전체", "가맹점수", "직영점수"];
+                        let keys2;
+                        let keys3;
+
+                        for(let i=0; i<3; i++){
+                            json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]] = {
+                                "전체": "",
+                                "가맹점수": "",
+                                "직영점수": ""
+                            };
+
+                            for(let j=0; j<3; j++){
+                                keys2 = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]]);
+                                keys3 = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]]);
+                                json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]] = {
+                                    "전체": "",
+                                    "서울": "",
+                                    "부산": "",
+                                    "대구": "",
+                                    "인천": "",
+                                    "광주": "",
+                                    "대전": "",
+                                    "울산": "",
+                                    "세종": "",
+                                    "경기": "",
+                                    "강원": "",
+                                    "충북": "",
+                                    "충남": "",
+                                    "전북": "",
+                                    "전남": "",
+                                    "경북": "",
+                                    "경남": "",
+                                    "제주": ""
+                                };
+                            }
+                        }
+
+                        for(let i=0; i<3; i++){
+                            for(let j=0; j<3; j++){
+                                for(let k=0; k<17; k++){
+                                    let keys4 = Object.keys(temp__vertical__th);
+                                    json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]][keys4[k]] = temp__td[(i*3)+j][k];
+                                }
+                            }
+                        }
+                    }
+
                     render(){
                         this.generalPresent__1();
                         this.generalPresent__2();
@@ -6120,6 +6207,10 @@ for(let num=0; num<urls.length; num++){
                         this.staffNum();
 
                         this.affiliateNum();
+
+                        this.openingDay();
+
+                        this.headOffice__state();
                     }
                 }
                 const crawling = new Crawling();
