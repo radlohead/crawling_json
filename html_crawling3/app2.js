@@ -6257,6 +6257,33 @@ for(let num=0; num<urls.length; num++){
                             });
                         }
                     }
+                    headOfficeNum(){
+                        let temp__th = "";
+                        $(`.box_flip:nth-child(2) .table:nth-child(10) thead tr th:nth-child(1)`).each(function(){
+                            temp__th = $(this).text();
+                        });
+                        $(`.box_flip:nth-child(2) .table:nth-child(10) thead tr td`).each(function(){
+                            json[num]["가맹본부의 가맹사업 현황"][4]["가맹지역본부 수"][temp__th] = $(this).text().replace(/\s/g, '');
+                        });
+                    }
+                    salesHistory(){
+                        let temp__th = [];
+
+                        $(`.box_flip:nth-child(2) .table:nth-child(12) thead tr th`).each(function(){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(2) .table:nth-child(12) tbody tr td`).each(function(i){
+                            json[num]["가맹본부의 가맹사업 현황"][5]["광고·판촉비 내역"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                        });
+                    }
+                    shareGold(){
+                        let temp__th = ["형태", "예치 가맹금"];
+
+                        $(`.box_flip:nth-child(2) .table:nth-child(14) td`).each(function(i){
+                            json[num]["가맹본부의 가맹사업 현황"][6]["가맹금사업자의 부담금"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                        });
+                    }
+
 
                     render(){
                         this.generalPresent__1();
@@ -6277,6 +6304,12 @@ for(let num=0; num<urls.length; num++){
                         this.currentState();
 
                         this.sales();
+
+                        this.headOfficeNum();
+
+                        this.salesHistory();
+
+                        this.shareGold();
                     }
                 }
                 const crawling = new Crawling();
