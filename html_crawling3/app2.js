@@ -10,7 +10,7 @@ let json = [];
 
 let urls = [
     "http://franchise.ftc.go.kr/user/extra/main/62/firMst/view/jsp/LayOutPage.do?dataIdx=48431&spage=3&srow=10&column=&search=",
-    "http://franchise.ftc.go.kr/user/extra/main/62/firMst/view/jsp/LayOutPage.do?dataIdx=47458&spage=3&srow=10&column=&search=",
+    // "http://franchise.ftc.go.kr/user/extra/main/62/firMst/view/jsp/LayOutPage.do?dataIdx=47458&spage=3&srow=10&column=&search=",
     // "http://franchise.ftc.go.kr/user/extra/main/62/firMst/view/jsp/LayOutPage.do?dataIdx=47617&spage=3&srow=10&column=&search=",
     // "http://franchise.ftc.go.kr/user/extra/main/62/firMst/view/jsp/LayOutPage.do?dataIdx=49807&spage=3&srow=10&column=&search=",
     // "http://franchise.ftc.go.kr/user/extra/main/62/firMst/view/jsp/LayOutPage.do?dataIdx=46432&spage=3&srow=10&column=&search=",
@@ -5949,9 +5949,182 @@ for(let num=0; num<urls.length; num++){
                     }]
                 });
 
-                let str = $('.box_flip:first-child .table:nth-child(2) tbody tr:first-child td:nth-child(1)').text();
-                json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]["상호"] = num;
-                console.log(str);
+                // function generalPresent__1(){
+                //     let temp__th = [];
+                //     let temp__td = [];
+                //     let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) thead tr:nth-child(1) th');
+                //     let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td');
+                //
+                //     th__1.each(i => {
+                //         const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                //         temp__th.push(keys[i]);
+                //     });
+                //     td__1.each(i => {
+                //         const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td:nth-child(${i+1})`).text().replace(/(\s*)/g, '').replace(/상호|영업표지|대표자/gi, "");
+                //         temp__td.push(td__text);
+                //     });
+                //     for(let i=0; i<temp__th.length; i++){
+                //         json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                //     }
+                // }
+                // generalPresent__1();
+                //
+                // function generalPresent__2(){
+                //     let temp__th = [];
+                //     let temp__td = [];
+                //     let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(2) th');
+                //     let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td');
+                //
+                //     th__1.each(i => {
+                //         const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                //         temp__th.push(keys[i+4]);
+                //     });
+                //     td__1.each(i => {
+                //         const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td:nth-child(${i+1})`).text().replace(/(\s*)/g, '');
+                //         temp__td.push(td__text);
+                //     });
+                //     for(let i=0; i<temp__th.length; i++){
+                //         json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                //     }
+                // }
+                // generalPresent__2();
+
+                class Crawling {
+                    constructor() {
+                    }
+                    generalPresent__1(){
+                        let temp__th = [];
+                        let temp__td = [];
+                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) thead tr:nth-child(1) th');
+                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td');
+
+                        th__1.each(i => {
+                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                            temp__th.push(keys[i]);
+                        });
+                        td__1.each(i => {
+                            const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td:nth-child(${i+1})`).text().replace(/(\s*)/g, '').replace(/상호|영업표지|대표자/gi, "");
+                            temp__td.push(td__text);
+                        });
+                        for(let i=0; i<temp__th.length; i++){
+                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                        }
+                    }
+                    generalPresent__2(){
+                        let temp__th = [];
+                        let temp__td = [];
+                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(2) th');
+                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td');
+
+                        th__1.each(i => {
+                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                            temp__th.push(keys[i+4]);
+                        });
+                        td__1.each(i => {
+                            const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td:nth-child(${i+1})`).text().replace(/(\s*)/g, '');
+                            temp__td.push(td__text);
+                        });
+                        for(let i=0; i<temp__th.length; i++){
+                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                        }
+                    }
+                    generalPresent__3(){
+                        let temp__th = [];
+                        let temp__td = [];
+                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(4) th');
+                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(5) td');
+
+                        th__1.each(i => {
+                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                            temp__th.push(keys[i+8]);
+                        });
+                        td__1.each(i => {
+                            const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(5) td:nth-child(${i+1})`).text().replace(/(\s*)/g, '');
+                            temp__td.push(td__text);
+                        });
+                        for(let i=0; i<temp__th.length; i++){
+                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                        }
+                    }
+                    generalPresent__4(){
+                        let temp__th = [];
+                        let temp__td = [];
+                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(3) th');
+                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(3) td.cell_left');
+
+                        th__1.each(i => {
+                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                            temp__th.push(keys[i+11]);
+                        });
+
+                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) tr:nth-child(2) td.cell_left:nth-child(2)`).text().replace(/(\s*)/g, ''));
+                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) tr:nth-child(3) td.cell_left:nth-child(2)`).text().replace(/(\s*)/g, ''));
+                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) tr:nth-child(3) td.cell_left:nth-child(4)`).text().replace(/(\s*)/g, ''));
+                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) tr:nth-child(3) td.cell_left:nth-child(6)`).text().replace(/(\s*)/g, ''));
+
+                        for(let i=0; i<temp__th.length; i++){
+                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                        }
+                    }
+                    financeState(){
+                        function arrayToText(index, str){
+                            let temp__td = [];
+
+                            $(`.box_flip:nth-child(1) .table tr.listFaShow`).each(function(i) {
+                                temp__td.push($(this).find(`td:nth-child(${index})`).text());
+                            });
+                            json[num]["가맹본부의 일반 현황"][1]["가맹본부 재무상황"][str] = temp__td;
+                        }
+
+                        const arrTitle = ["연도", "재무제표 작성여부", "자산", "부채", "자본", "매출액", "영업이익", "당기순이익"];
+                        for(let i=0; i<8; i++){
+                            arrayToText(i+1, arrTitle[i]);
+                        }
+                    }
+                    staffNum(){
+                        let temp__th = [];
+                        let temp__td = [];
+
+                        $(`.box_flip:nth-child(1) .table:nth-child(7) thead tr:first-child th`).each(function(){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(1) .table tr.listEmpShow td`).each(function(){
+                            temp__td.push($(this).text().replace(/\s/g, ''));
+                        });
+                        for(let i=0; i<temp__th.length; i++){
+                            json[num]["가맹본부의 일반 현황"][2]["가맹사업 임직원수"][temp__th[i]] = temp__td[i];
+                        }
+                    }
+                    affiliateNum(){
+                        let temp__th = [];
+                        let temp__td = [];
+
+                        $(`.box_flip:nth-child(1) .table:nth-child(9) thead tr:first-child th`).each(function(){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(1) .table:nth-child(9) tbody tr:first-child td`).each(function(){
+                            temp__td.push($(this).text().replace(/\s/g, ''));
+                        });
+                        for(let i=0; i<temp__th.length; i++){
+                            json[num]["가맹본부의 일반 현황"][3]["가맹본부 브랜드 및 가맹사업 계열사 수"][temp__th[i]] = temp__td[i];
+                        }
+                    }
+                    render(){
+                        this.generalPresent__1();
+                        this.generalPresent__2();
+                        this.generalPresent__3();
+                        this.generalPresent__4();
+
+                        this.financeState();
+
+                        this.staffNum();
+
+                        this.affiliateNum();
+                    }
+                }
+                const crawling = new Crawling();
+                crawling.render();
+
                 next();
             }
         });

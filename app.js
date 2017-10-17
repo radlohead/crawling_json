@@ -79,7 +79,7 @@ let crawling = function (url) {
                 });
                 [].forEach.call(app.querySelectorAll(".table")[1].querySelectorAll("tbody td"), (v, i) => {
                     pushText(v, i + index);
-                });
+                });json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]
                 index = 0;
 
                 [].forEach.call(app.querySelectorAll(".table")[2].querySelectorAll("tbody th"), (v, i) => {
