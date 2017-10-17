@@ -6204,6 +6204,59 @@ for(let num=0; num<urls.length; num++){
                             });
                         }
                     }
+                    sales(){
+                        let year = "";
+                        let str = ["가맹점수", "평균매출액", "면적(3.3㎡)당 평균매출액"];
+                        let area = [];
+                        let areaValue = [];
+                        $(`.box_flip:nth-child(2) .table:nth-child(8) thead tr th.listOfCntShow`).each(function(){
+                            year = $(this).text();
+                            json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][$(this).text()] = {
+                                "가맹점수": {},
+                                "평균매출액": {},
+                                "면적(3.3㎡)당 평균매출액": {}
+                            };
+
+                            for(let i=0; i<str.length; i++){
+                                json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][$(this).text()][str[i]] = {
+                                    "전체": "",
+                                    "서울": "",
+                                    "부산": "",
+                                    "대구": "",
+                                    "인천": "",
+                                    "광주": "",
+                                    "대전": "",
+                                    "울산": "",
+                                    "세종": "",
+                                    "경기": "",
+                                    "강원": "",
+                                    "충북": "",
+                                    "충남": "",
+                                    "전북": "",
+                                    "전남": "",
+                                    "경북": "",
+                                    "경남": "",
+                                    "제주": ""
+                                };
+                            }
+                        });
+
+                        $(`.box_flip:nth-child(2) .table:nth-child(8) tbody tr td:nth-child(1)`).each(function(){
+                            area.push($(this).text());
+                        });
+
+                        for(let i=0; i<str.length; i++){
+                            areaValue[i] = [];
+                        }
+                        for(let i=0; i<str.length; i++){
+                            $(`.box_flip:nth-child(2) .table:nth-child(8) tbody tr td.listLocAvgShow:nth-child(${i+2})`).each(function(){
+                                areaValue[i].push($(this).text().replace(/\s/g, ''));
+                                for(let j=0; j<area.length; j++){
+                                    json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][year][str[i]][area[j]] = areaValue[i][j];
+                                }
+                            });
+                        }
+                    }
 
                     render(){
                         this.generalPresent__1();
@@ -6222,6 +6275,8 @@ for(let num=0; num<urls.length; num++){
                         this.headOffice__state();
 
                         this.currentState();
+
+                        this.sales();
                     }
                 }
                 const crawling = new Crawling();
