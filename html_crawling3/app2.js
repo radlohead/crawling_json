@@ -6195,6 +6195,15 @@ for(let num=0; num<urls.length; num++){
                             }
                         }
                     }
+                    currentState(){
+                        let str = ["연도", "신규개점", "계약종료", "계약해지", "명의변경"];
+
+                        for(let i=0; i<5; i++){
+                            $(`.box_flip:nth-child(2) .table:nth-child(6) tbody tr td:nth-child(${i+1})`).each(function(){
+                                json[num]["가맹본부의 가맹사업 현황"][2]["가맹점 변동 현황"][str[i]].push($(this).text().replace(/\s/g, ''));
+                            });
+                        }
+                    }
 
                     render(){
                         this.generalPresent__1();
@@ -6211,6 +6220,8 @@ for(let num=0; num<urls.length; num++){
                         this.openingDay();
 
                         this.headOffice__state();
+
+                        this.currentState();
                     }
                 }
                 const crawling = new Crawling();
