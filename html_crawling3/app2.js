@@ -6146,7 +6146,6 @@ for(let num=0; num<urls.length; num++){
                             });
                         }
 
-                        // console.log(temp__vertical__th, temp__td);
                         json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"] = temp__row__th1;
                         let keys = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"]);
                         const row__th2 = ["전체", "가맹점수", "직영점수"];
@@ -6283,7 +6282,44 @@ for(let num=0; num<urls.length; num++){
                             json[num]["가맹본부의 가맹사업 현황"][6]["가맹금사업자의 부담금"][temp__th[i]] = $(this).text().replace(/\s/g, '');
                         });
                     }
+                    lawViolations(){
+                        let temp__th = [];
 
+                        $(`.box_flip:nth-child(3) .table:nth-child(2) th`).each(function(i){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(3) .table:nth-child(2) td`).each(function(i){
+                            json[num]["가맹본부와 그 임원의 법 위반 사실"][0]["최근 3년간 법 위반 사실"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                        });
+                    }
+                    liabilityAmount(){
+                        let temp__th = [];
+                        $(`.box_flip:nth-child(4) .table:nth-child(2) th`).each(function(i){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(4) .table:nth-child(2) td`).each(function(i){
+                            json[num]["가맹점사업자의 부담"][0]["가맹점사업자의 부담금"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                        });
+                    }
+                    interiorCost(){
+                        let temp__th = [];
+                        $(`.box_flip:nth-child(4) .table:nth-child(4) thead th`).each(function(i){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(4) .table:nth-child(4) tbody td`).each(function(i){
+                            json[num]["가맹점사업자의 부담"][1]["인테리어 비용"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                        });
+                    }
+                    contractPeriod(){
+                        let temp__th = [];
+
+                        $(`.box_flip:nth-child(5) .table:nth-child(2) thead tr:nth-child(2) th`).each(function(i){
+                            temp__th.push($(this).text());
+                        });
+                        $(`.box_flip:nth-child(5) .table:nth-child(2) tbody td`).each(function(i){
+                            json[num]["영업활동에 대한 조건 및 제한"][0]["가맹계약 기간"]["계약기간"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                        });
+                    }
 
                     render(){
                         this.generalPresent__1();
@@ -6310,6 +6346,14 @@ for(let num=0; num<urls.length; num++){
                         this.salesHistory();
 
                         this.shareGold();
+
+                        this.lawViolations();
+
+                        this.liabilityAmount();
+
+                        this.interiorCost();
+
+                        this.contractPeriod();
                     }
                 }
                 const crawling = new Crawling();
