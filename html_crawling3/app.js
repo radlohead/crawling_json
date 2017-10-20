@@ -1331,7 +1331,7 @@ if(cluster.isMaster){
 
                         for (let i = 0; i < 3; i++) {
                             for (let j = 0; j < 3; j++) {
-                                for (let k = 0; k < 17; k++) {
+                                for (let k = 0; k < 18; k++) {
                                     let keys4 = Object.keys(temp__vertical__th);
                                     json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]][keys4[k]] = temp__td[(i * 3) + j][k];
                                 }
