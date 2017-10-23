@@ -1022,498 +1022,500 @@ if(cluster.isMaster){
     for (let num=0; num<urls.length; num++) {
         app.use((req, res, next) => {
             client.fetch(urls[num], {q: 'node.js'}, (err, $, response, body) => {
-                json.push({
-                    "가맹본부의 일반 현황": [{
-                        "가맹본부 일반 현황": {
-                            "상호": "",
-                            "영업표지": "",
-                            "대표자": "",
-                            "업종": "",
-                            "법인설립등기일": "",
-                            "사업자등록일": "",
-                            "대표번호": "",
-                            "대표팩스 번호": "",
-                            "등록번호": "",
-                            "최초등록일": "",
-                            "최종등록일": "",
-                            "주소": "",
-                            "사업자유형": "",
-                            "법인등록번호": "",
-                            "사업자등록번호": ""
+                if($) {
+                    json.push({
+                        "가맹본부의 일반 현황": [{
+                            "가맹본부 일반 현황": {
+                                "상호": "",
+                                "영업표지": "",
+                                "대표자": "",
+                                "업종": "",
+                                "법인설립등기일": "",
+                                "사업자등록일": "",
+                                "대표번호": "",
+                                "대표팩스 번호": "",
+                                "등록번호": "",
+                                "최초등록일": "",
+                                "최종등록일": "",
+                                "주소": "",
+                                "사업자유형": "",
+                                "법인등록번호": "",
+                                "사업자등록번호": ""
+                            }
+                        }, {
+                            "가맹본부 재무상황": {
+                                "연도": [],
+                                "재무제표 작성여부": [],
+                                "자산": [],
+                                "부채": [],
+                                "자본": [],
+                                "매출액": [],
+                                "영업이익": [],
+                                "당기순이익": []
+                            }
+                        }, {
+                            "가맹사업 임직원수": {
+                                "연도": "",
+                                "임원수": "",
+                                "직원수": ""
+                            }
+                        }, {
+                            "가맹본부 브랜드 및 가맹사업 계열사 수": {
+                                "브랜드 수": "",
+                                "가맹사업 계열사 수": ""
+                            }
+                        }], "가맹본부의 가맹사업 현황": [{
+                            "가맹사업 개시일": {
+                                "가맹사업 개시일": ""
+                            }
+                        }, {
+                            "가맹점 및 직영점 현황": {}
+                        }, {
+                            "가맹점 변동 현황": {
+                                "연도": [],
+                                "신규개점": [],
+                                "계약종료": [],
+                                "계약해지": [],
+                                "명의변경": []
+                            }
+                        }, {
+                            "가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액": {}
+                        }, {
+                            "가맹지역본부 수": {
+                                "가맹지역본부(지사,지역총판)수": ""
+                            }
+                        }, {
+                            "광고·판촉비 내역": {
+                                "연도": "",
+                                "광고비": "",
+                                "판촉비": ""
+                            }
+                        }, {
+                            "가맹금사업자의 부담금": {
+                                "형태": "",
+                                "예치 가맹금": ""
+                            }
+                        }], "가맹본부와 그 임원의 법 위반 사실": [{
+                            "최근 3년간 법 위반 사실": {
+                                "공정거래위원회의 시정조치": "",
+                                "민사소송 패소 및 민사상 화해": "",
+                                "형의 선고": ""
+                            }
+                        }], "가맹점사업자의 부담": [{
+                            "가맹점사업자의 부담금": {
+                                "가입비(가맹비)": "",
+                                "교육비": "",
+                                "보증금": "",
+                                "기타비용": "",
+                                "합계": ""
+                            }
+                        }, {
+                            "인테리어 비용": {
+                                "단위면적(3.3㎡)당 인테리어 비용": "",
+                                "기준점포면적(㎡)": "",
+                                "인테리어 비용": ""
+                            }
+                        }], "영업활동에 대한 조건 및 제한": [{
+                            "가맹계약 기간": {
+                                "계약기간": {
+                                    "최초": "",
+                                    "연장": ""
+                                }
+                            }
+                        }]
+                    });
+
+                    class Crawling {
+                        constructor() {
                         }
-                    }, {
-                        "가맹본부 재무상황": {
-                            "연도": [],
-                            "재무제표 작성여부": [],
-                            "자산": [],
-                            "부채": [],
-                            "자본": [],
-                            "매출액": [],
-                            "영업이익": [],
-                            "당기순이익": []
-                        }
-                    }, {
-                        "가맹사업 임직원수": {
-                            "연도": "",
-                            "임원수": "",
-                            "직원수": ""
-                        }
-                    }, {
-                        "가맹본부 브랜드 및 가맹사업 계열사 수": {
-                            "브랜드 수": "",
-                            "가맹사업 계열사 수": ""
-                        }
-                    }], "가맹본부의 가맹사업 현황": [{
-                        "가맹사업 개시일": {
-                            "가맹사업 개시일": ""
-                        }
-                    }, {
-                        "가맹점 및 직영점 현황": {}
-                    }, {
-                        "가맹점 변동 현황": {
-                            "연도": [],
-                            "신규개점": [],
-                            "계약종료": [],
-                            "계약해지": [],
-                            "명의변경": []
-                        }
-                    }, {
-                        "가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액": {}
-                    }, {
-                        "가맹지역본부 수": {
-                            "가맹지역본부(지사,지역총판)수": ""
-                        }
-                    }, {
-                        "광고·판촉비 내역": {
-                            "연도": "",
-                            "광고비": "",
-                            "판촉비": ""
-                        }
-                    }, {
-                        "가맹금사업자의 부담금": {
-                            "형태": "",
-                            "예치 가맹금": ""
-                        }
-                    }], "가맹본부와 그 임원의 법 위반 사실": [{
-                        "최근 3년간 법 위반 사실": {
-                            "공정거래위원회의 시정조치": "",
-                            "민사소송 패소 및 민사상 화해": "",
-                            "형의 선고": ""
-                        }
-                    }], "가맹점사업자의 부담": [{
-                        "가맹점사업자의 부담금": {
-                            "가입비(가맹비)": "",
-                            "교육비": "",
-                            "보증금": "",
-                            "기타비용": "",
-                            "합계": ""
-                        }
-                    }, {
-                        "인테리어 비용": {
-                            "단위면적(3.3㎡)당 인테리어 비용": "",
-                            "기준점포면적(㎡)": "",
-                            "인테리어 비용": ""
-                        }
-                    }], "영업활동에 대한 조건 및 제한": [{
-                        "가맹계약 기간": {
-                            "계약기간": {
-                                "최초": "",
-                                "연장": ""
+
+                        generalPresent__1() {
+                            let temp__th = [];
+                            let temp__td = [];
+                            let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) thead tr:nth-child(1) th');
+                            let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td');
+
+                            th__1.each(i => {
+                                const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                                temp__th.push(keys[i]);
+                            });
+                            td__1.each(i => {
+                                const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td:nth-child(${i + 1})`).text().replace(/(\s*)/g, '').replace(/상호|영업표지|대표자/gi, "");
+                                temp__td.push(td__text);
+                            });
+                            for (let i = 0; i < temp__th.length; i++) {
+                                json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
                             }
                         }
-                    }]
-                });
 
-                class Crawling {
-                    constructor() {
-                    }
+                        generalPresent__2() {
+                            let temp__th = [];
+                            let temp__td = [];
+                            let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(2) th');
+                            let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td');
 
-                    generalPresent__1() {
-                        let temp__th = [];
-                        let temp__td = [];
-                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) thead tr:nth-child(1) th');
-                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td');
-
-                        th__1.each(i => {
-                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
-                            temp__th.push(keys[i]);
-                        });
-                        td__1.each(i => {
-                            const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(1) td:nth-child(${i + 1})`).text().replace(/(\s*)/g, '').replace(/상호|영업표지|대표자/gi, "");
-                            temp__td.push(td__text);
-                        });
-                        for (let i = 0; i < temp__th.length; i++) {
-                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                            th__1.each(i => {
+                                const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                                temp__th.push(keys[i + 4]);
+                            });
+                            td__1.each(i => {
+                                const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td:nth-child(${i + 1})`).text().replace(/(\s*)/g, '');
+                                temp__td.push(td__text);
+                            });
+                            for (let i = 0; i < temp__th.length; i++) {
+                                json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                            }
                         }
-                    }
 
-                    generalPresent__2() {
-                        let temp__th = [];
-                        let temp__td = [];
-                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(2) th');
-                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td');
+                        generalPresent__3() {
+                            let temp__th = [];
+                            let temp__td = [];
+                            let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(4) th');
+                            let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(5) td');
 
-                        th__1.each(i => {
-                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
-                            temp__th.push(keys[i + 4]);
-                        });
-                        td__1.each(i => {
-                            const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(3) td:nth-child(${i + 1})`).text().replace(/(\s*)/g, '');
-                            temp__td.push(td__text);
-                        });
-                        for (let i = 0; i < temp__th.length; i++) {
-                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                            th__1.each(i => {
+                                const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                                temp__th.push(keys[i + 8]);
+                            });
+                            td__1.each(i => {
+                                const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(5) td:nth-child(${i + 1})`).text().replace(/(\s*)/g, '');
+                                temp__td.push(td__text);
+                            });
+                            for (let i = 0; i < temp__th.length; i++) {
+                                json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                            }
                         }
-                    }
 
-                    generalPresent__3() {
-                        let temp__th = [];
-                        let temp__td = [];
-                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(4) th');
-                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(5) td');
+                        generalPresent__4() {
+                            let temp__th = [];
+                            let temp__td = [];
+                            let th__1 = $('.box_flip:nth-child(1) .table:nth-child(3) th');
+                            let td__1 = $('.box_flip:nth-child(1) .table:nth-child(3) td.cell_left');
 
-                        th__1.each(i => {
-                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
-                            temp__th.push(keys[i + 8]);
-                        });
-                        td__1.each(i => {
-                            const td__text = $(`.box_flip:nth-child(1) .table:nth-child(2) tbody tr:nth-child(5) td:nth-child(${i + 1})`).text().replace(/(\s*)/g, '');
-                            temp__td.push(td__text);
-                        });
-                        for (let i = 0; i < temp__th.length; i++) {
-                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                            th__1.each(i => {
+                                const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
+                                temp__th.push(keys[i + 11]);
+                            });
+
+                            temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(2) td.cell_left`).text().replace(/(^\s*)|(\s*$)/g, ''));
+                            temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(2)`).text().replace(/(\s*)/g, ''));
+                            temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(4)`).text().replace(/(\s*)/g, ''));
+                            temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(6)`).text().replace(/(\s*)/g, ''));
+
+                            for (let i = 0; i < temp__th.length; i++) {
+                                json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                            }
                         }
-                    }
 
-                    generalPresent__4() {
-                        let temp__th = [];
-                        let temp__td = [];
-                        let th__1 = $('.box_flip:nth-child(1) .table:nth-child(3) th');
-                        let td__1 = $('.box_flip:nth-child(1) .table:nth-child(3) td.cell_left');
+                        financeState() {
+                            function arrayToText(index, str) {
+                                let temp__td = [];
 
-                        th__1.each(i => {
-                            const keys = Object.keys(json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"]);
-                            temp__th.push(keys[i + 11]);
-                        });
+                                $(`.box_flip:nth-child(1) .table tr.listFaShow`).each(function (i) {
+                                    temp__td.push($(this).find(`td:nth-child(${index})`).text());
+                                });
+                                json[num]["가맹본부의 일반 현황"][1]["가맹본부 재무상황"][str] = temp__td;
+                            }
 
-                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(2) td.cell_left`).text().replace(/(\s*)/g, ''));
-                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(2)`).text().replace(/(\s*)/g, ''));
-                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(4)`).text().replace(/(\s*)/g, ''));
-                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(6)`).text().replace(/(\s*)/g, ''));
-
-                        for (let i = 0; i < temp__th.length; i++) {
-                            json[num]["가맹본부의 일반 현황"][0]["가맹본부 일반 현황"][temp__th[i]] = temp__td[i];
+                            const arrTitle = ["연도", "재무제표 작성여부", "자산", "부채", "자본", "매출액", "영업이익", "당기순이익"];
+                            for (let i = 0; i < 8; i++) {
+                                arrayToText(i + 1, arrTitle[i]);
+                            }
                         }
-                    }
 
-                    financeState() {
-                        function arrayToText(index, str) {
+                        staffNum() {
+                            let temp__th = [];
                             let temp__td = [];
 
-                            $(`.box_flip:nth-child(1) .table tr.listFaShow`).each(function (i) {
-                                temp__td.push($(this).find(`td:nth-child(${index})`).text());
+                            $(`.box_flip:nth-child(1) .table:nth-child(7) thead tr:first-child th`).each(function () {
+                                temp__th.push($(this).text());
                             });
-                            json[num]["가맹본부의 일반 현황"][1]["가맹본부 재무상황"][str] = temp__td;
-                        }
-
-                        const arrTitle = ["연도", "재무제표 작성여부", "자산", "부채", "자본", "매출액", "영업이익", "당기순이익"];
-                        for (let i = 0; i < 8; i++) {
-                            arrayToText(i + 1, arrTitle[i]);
-                        }
-                    }
-
-                    staffNum() {
-                        let temp__th = [];
-                        let temp__td = [];
-
-                        $(`.box_flip:nth-child(1) .table:nth-child(7) thead tr:first-child th`).each(function () {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(1) .table tr.listEmpShow td`).each(function () {
-                            temp__td.push($(this).text().replace(/\s/g, ''));
-                        });
-                        for (let i = 0; i < temp__th.length; i++) {
-                            json[num]["가맹본부의 일반 현황"][2]["가맹사업 임직원수"][temp__th[i]] = temp__td[i];
-                        }
-                    }
-
-                    affiliateNum() {
-                        let temp__th = [];
-                        let temp__td = [];
-
-                        $(`.box_flip:nth-child(1) .table:nth-child(9) thead tr:first-child th`).each(function () {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(1) .table:nth-child(9) tbody tr:first-child td`).each(function () {
-                            temp__td.push($(this).text().replace(/\s/g, ''));
-                        });
-                        for (let i = 0; i < temp__th.length; i++) {
-                            json[num]["가맹본부의 일반 현황"][3]["가맹본부 브랜드 및 가맹사업 계열사 수"][temp__th[i]] = temp__td[i];
-                        }
-                    }
-
-                    openingDay() {
-                        let temp__th = [];
-                        let temp__td = [];
-
-                        $(`.box_flip:nth-child(2) .table:nth-child(2) thead tr:first-child th`).each(function () {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(2) .table:nth-child(2) thead tr:first-child td`).each(function () {
-                            temp__td.push($(this).text().replace(/\s/g, ''));
-                        });
-                        json[num]["가맹본부의 가맹사업 현황"][0]["가맹사업 개시일"][temp__th[0]] = temp__td[0];
-                    }
-
-                    headOffice__state() {
-                        let temp__row__th1 = {};
-                        let temp__row__th2 = {};
-                        let temp__vertical__th = {};
-                        let temp__td = [];
-
-                        for (let i = 0; i < 9; i++) {
-                            temp__td[i] = [];
-                        }
-
-                        $(`.box_flip:nth-child(2) .table:nth-child(4) thead tr:first-child th.listOfCntShow`).each(function () {
-                            temp__row__th1[$(this).text()] = {};
-                        });
-                        $(`.box_flip:nth-child(2) .table:nth-child(4) thead tr:nth-child(2) th.listOfCntShow`).each(function () {
-                            temp__row__th2[$(this).text()] = {};
-                        });
-                        $(`.box_flip:nth-child(2) .table:nth-child(4) tbody tr td.noborder`).each(function () {
-                            temp__vertical__th[$(this).text()] = '';
-                        });
-                        for (let i = 0; i < 9; i++) {
-                            $(`.box_flip:nth-child(2) .table:nth-child(4) tbody tr td.listOfCntShow:nth-child(${i + 2})`).each(function () {
-                                temp__td[i].push($(this).text().replace(/\s/g, ''));
+                            $(`.box_flip:nth-child(1) .table tr.listEmpShow td`).each(function () {
+                                temp__td.push($(this).text().replace(/\s/g, ''));
                             });
-                        }
-
-                        json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"] = temp__row__th1;
-                        let keys = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"]);
-                        const row__th2 = ["전체", "가맹점수", "직영점수"];
-                        let keys2;
-                        let keys3;
-
-                        for (let i = 0; i < 3; i++) {
-                            json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]] = {
-                                "전체": "",
-                                "가맹점수": "",
-                                "직영점수": ""
-                            };
-
-                            for (let j = 0; j < 3; j++) {
-                                keys2 = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]]);
-                                keys3 = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]]);
-                                json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]] = {
-                                    "전체": "",
-                                    "서울": "",
-                                    "부산": "",
-                                    "대구": "",
-                                    "인천": "",
-                                    "광주": "",
-                                    "대전": "",
-                                    "울산": "",
-                                    "세종": "",
-                                    "경기": "",
-                                    "강원": "",
-                                    "충북": "",
-                                    "충남": "",
-                                    "전북": "",
-                                    "전남": "",
-                                    "경북": "",
-                                    "경남": "",
-                                    "제주": ""
-                                };
+                            for (let i = 0; i < temp__th.length; i++) {
+                                json[num]["가맹본부의 일반 현황"][2]["가맹사업 임직원수"][temp__th[i]] = temp__td[i];
                             }
                         }
 
-                        for (let i = 0; i < 3; i++) {
-                            for (let j = 0; j < 3; j++) {
-                                for (let k = 0; k < 18; k++) {
-                                    let keys4 = Object.keys(temp__vertical__th);
-                                    json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]][keys4[k]] = temp__td[(i * 3) + j][k];
+                        affiliateNum() {
+                            let temp__th = [];
+                            let temp__td = [];
+
+                            $(`.box_flip:nth-child(1) .table:nth-child(9) thead tr:first-child th`).each(function () {
+                                temp__th.push($(this).text());
+                            });
+                            $(`.box_flip:nth-child(1) .table:nth-child(9) tbody tr:first-child td`).each(function () {
+                                temp__td.push($(this).text().replace(/\s/g, ''));
+                            });
+                            for (let i = 0; i < temp__th.length; i++) {
+                                json[num]["가맹본부의 일반 현황"][3]["가맹본부 브랜드 및 가맹사업 계열사 수"][temp__th[i]] = temp__td[i];
+                            }
+                        }
+
+                        openingDay() {
+                            let temp__th = [];
+                            let temp__td = [];
+
+                            $(`.box_flip:nth-child(2) .table:nth-child(2) thead tr:first-child th`).each(function () {
+                                temp__th.push($(this).text());
+                            });
+                            $(`.box_flip:nth-child(2) .table:nth-child(2) thead tr:first-child td`).each(function () {
+                                temp__td.push($(this).text().replace(/\s/g, ''));
+                            });
+                            json[num]["가맹본부의 가맹사업 현황"][0]["가맹사업 개시일"][temp__th[0]] = temp__td[0];
+                        }
+
+                        headOffice__state() {
+                            let temp__row__th1 = {};
+                            let temp__row__th2 = {};
+                            let temp__vertical__th = {};
+                            let temp__td = [];
+
+                            for (let i = 0; i < 9; i++) {
+                                temp__td[i] = [];
+                            }
+
+                            $(`.box_flip:nth-child(2) .table:nth-child(4) thead tr:first-child th.listOfCntShow`).each(function () {
+                                temp__row__th1[$(this).text()] = {};
+                            });
+                            $(`.box_flip:nth-child(2) .table:nth-child(4) thead tr:nth-child(2) th.listOfCntShow`).each(function () {
+                                temp__row__th2[$(this).text()] = {};
+                            });
+                            $(`.box_flip:nth-child(2) .table:nth-child(4) tbody tr td.noborder`).each(function () {
+                                temp__vertical__th[$(this).text()] = '';
+                            });
+                            for (let i = 0; i < 9; i++) {
+                                $(`.box_flip:nth-child(2) .table:nth-child(4) tbody tr td.listOfCntShow:nth-child(${i + 2})`).each(function () {
+                                    temp__td[i].push($(this).text().replace(/\s/g, ''));
+                                });
+                            }
+
+                            json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"] = temp__row__th1;
+                            let keys = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"]);
+                            const row__th2 = ["전체", "가맹점수", "직영점수"];
+                            let keys2;
+                            let keys3;
+
+                            for (let i = 0; i < 3; i++) {
+                                json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]] = {
+                                    "전체": "",
+                                    "가맹점수": "",
+                                    "직영점수": ""
+                                };
+
+                                for (let j = 0; j < 3; j++) {
+                                    keys2 = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]]);
+                                    keys3 = Object.keys(json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]]);
+                                    json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]] = {
+                                        "전체": "",
+                                        "서울": "",
+                                        "부산": "",
+                                        "대구": "",
+                                        "인천": "",
+                                        "광주": "",
+                                        "대전": "",
+                                        "울산": "",
+                                        "세종": "",
+                                        "경기": "",
+                                        "강원": "",
+                                        "충북": "",
+                                        "충남": "",
+                                        "전북": "",
+                                        "전남": "",
+                                        "경북": "",
+                                        "경남": "",
+                                        "제주": ""
+                                    };
+                                }
+                            }
+
+                            for (let i = 0; i < 3; i++) {
+                                for (let j = 0; j < 3; j++) {
+                                    for (let k = 0; k < 18; k++) {
+                                        let keys4 = Object.keys(temp__vertical__th);
+                                        json[num]["가맹본부의 가맹사업 현황"][1]["가맹점 및 직영점 현황"][keys[i]][row__th2[j]][keys4[k]] = temp__td[(i * 3) + j][k];
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    currentState() {
-                        let str = ["연도", "신규개점", "계약종료", "계약해지", "명의변경"];
+                        currentState() {
+                            let str = ["연도", "신규개점", "계약종료", "계약해지", "명의변경"];
 
-                        for (let i = 0; i < 5; i++) {
-                            $(`.box_flip:nth-child(2) .table:nth-child(6) tbody tr td:nth-child(${i + 1})`).each(function () {
-                                json[num]["가맹본부의 가맹사업 현황"][2]["가맹점 변동 현황"][str[i]].push($(this).text().replace(/\s/g, ''));
-                            });
+                            for (let i = 0; i < 5; i++) {
+                                $(`.box_flip:nth-child(2) .table:nth-child(6) tbody tr td:nth-child(${i + 1})`).each(function () {
+                                    json[num]["가맹본부의 가맹사업 현황"][2]["가맹점 변동 현황"][str[i]].push($(this).text().replace(/\s/g, ''));
+                                });
+                            }
                         }
-                    }
 
-                    sales() {
-                        let year = "";
-                        let str = ["가맹점수", "평균매출액", "면적(3.3㎡)당 평균매출액"];
-                        let area = [];
-                        let areaValue = [];
-                        $(`.box_flip:nth-child(2) .table:nth-child(8) thead tr th.listOfCntShow`).each(function () {
-                            year = $(this).text();
-                            json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][$(this).text()] = {
-                                "가맹점수": {},
-                                "평균매출액": {},
-                                "면적(3.3㎡)당 평균매출액": {}
-                            };
+                        sales() {
+                            let year = "";
+                            let str = ["가맹점수", "평균매출액", "면적(3.3㎡)당 평균매출액"];
+                            let area = [];
+                            let areaValue = [];
+                            $(`.box_flip:nth-child(2) .table:nth-child(8) thead tr th.listOfCntShow`).each(function () {
+                                year = $(this).text();
+                                json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][$(this).text()] = {
+                                    "가맹점수": {},
+                                    "평균매출액": {},
+                                    "면적(3.3㎡)당 평균매출액": {}
+                                };
+
+                                for (let i = 0; i < str.length; i++) {
+                                    json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][$(this).text()][str[i]] = {
+                                        "전체": "",
+                                        "서울": "",
+                                        "부산": "",
+                                        "대구": "",
+                                        "인천": "",
+                                        "광주": "",
+                                        "대전": "",
+                                        "울산": "",
+                                        "세종": "",
+                                        "경기": "",
+                                        "강원": "",
+                                        "충북": "",
+                                        "충남": "",
+                                        "전북": "",
+                                        "전남": "",
+                                        "경북": "",
+                                        "경남": "",
+                                        "제주": ""
+                                    };
+                                }
+                            });
+
+                            $(`.box_flip:nth-child(2) .table:nth-child(8) tbody tr td:nth-child(1)`).each(function () {
+                                area.push($(this).text());
+                            });
 
                             for (let i = 0; i < str.length; i++) {
-                                json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][$(this).text()][str[i]] = {
-                                    "전체": "",
-                                    "서울": "",
-                                    "부산": "",
-                                    "대구": "",
-                                    "인천": "",
-                                    "광주": "",
-                                    "대전": "",
-                                    "울산": "",
-                                    "세종": "",
-                                    "경기": "",
-                                    "강원": "",
-                                    "충북": "",
-                                    "충남": "",
-                                    "전북": "",
-                                    "전남": "",
-                                    "경북": "",
-                                    "경남": "",
-                                    "제주": ""
-                                };
+                                areaValue[i] = [];
                             }
-                        });
-
-                        $(`.box_flip:nth-child(2) .table:nth-child(8) tbody tr td:nth-child(1)`).each(function () {
-                            area.push($(this).text());
-                        });
-
-                        for (let i = 0; i < str.length; i++) {
-                            areaValue[i] = [];
+                            for (let i = 0; i < str.length; i++) {
+                                $(`.box_flip:nth-child(2) .table:nth-child(8) tbody tr td.listLocAvgShow:nth-child(${i + 2})`).each(function () {
+                                    areaValue[i].push($(this).text().replace(/\s/g, ''));
+                                    for (let j = 0; j < area.length; j++) {
+                                        json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][year][str[i]][area[j]] = areaValue[i][j];
+                                    }
+                                });
+                            }
                         }
-                        for (let i = 0; i < str.length; i++) {
-                            $(`.box_flip:nth-child(2) .table:nth-child(8) tbody tr td.listLocAvgShow:nth-child(${i + 2})`).each(function () {
-                                areaValue[i].push($(this).text().replace(/\s/g, ''));
-                                for (let j = 0; j < area.length; j++) {
-                                    json[num]["가맹본부의 가맹사업 현황"][3]["가맹점사업자의 평균 매출액 및 면적(3.3㎡)당 매출액"][year][str[i]][area[j]] = areaValue[i][j];
-                                }
+
+                        headOfficeNum() {
+                            let temp__th = "";
+                            $(`.box_flip:nth-child(2) .table:nth-child(10) thead tr th:nth-child(1)`).each(function () {
+                                temp__th = $(this).text();
+                            });
+                            $(`.box_flip:nth-child(2) .table:nth-child(10) thead tr td`).each(function () {
+                                json[num]["가맹본부의 가맹사업 현황"][4]["가맹지역본부 수"][temp__th] = $(this).text().replace(/\s/g, '');
                             });
                         }
+
+                        salesHistory() {
+                            let temp__th = [];
+
+                            $(`.box_flip:nth-child(2) .table:nth-child(12) thead tr th`).each(function () {
+                                temp__th.push($(this).text());
+                            });
+                            $(`.box_flip:nth-child(2) .table:nth-child(12) tbody tr td`).each(function (i) {
+                                json[num]["가맹본부의 가맹사업 현황"][5]["광고·판촉비 내역"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                            });
+                        }
+
+                        shareGold() {
+                            let temp__th = ["형태", "예치 가맹금"];
+
+                            $(`.box_flip:nth-child(2) .table:nth-child(14) td`).each(function (i) {
+                                json[num]["가맹본부의 가맹사업 현황"][6]["가맹금사업자의 부담금"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                            });
+                        }
+
+                        lawViolations() {
+                            let temp__th = [];
+
+                            $(`.box_flip:nth-child(3) .table:nth-child(2) th`).each(function (i) {
+                                temp__th.push($(this).text());
+                            });
+                            $(`.box_flip:nth-child(3) .table:nth-child(2) td`).each(function (i) {
+                                json[num]["가맹본부와 그 임원의 법 위반 사실"][0]["최근 3년간 법 위반 사실"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                            });
+                        }
+
+                        liabilityAmount() {
+                            let temp__th = [];
+                            $(`.box_flip:nth-child(4) .table:nth-child(2) th`).each(function (i) {
+                                temp__th.push($(this).text());
+                            });
+                            $(`.box_flip:nth-child(4) .table:nth-child(2) td`).each(function (i) {
+                                json[num]["가맹점사업자의 부담"][0]["가맹점사업자의 부담금"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                            });
+                        }
+
+                        interiorCost() {
+                            let temp__th = [];
+                            $(`.box_flip:nth-child(4) .table:nth-child(4) thead th`).each(function (i) {
+                                temp__th.push($(this).text());
+                            });
+                            $(`.box_flip:nth-child(4) .table:nth-child(4) tbody td`).each(function (i) {
+                                json[num]["가맹점사업자의 부담"][1]["인테리어 비용"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                            });
+                        }
+
+                        contractPeriod() {
+                            let temp__th = [];
+
+                            $(`.box_flip:nth-child(5) .table:nth-child(2) thead tr:nth-child(2) th`).each(function (i) {
+                                temp__th.push($(this).text());
+                            });
+                            $(`.box_flip:nth-child(5) .table:nth-child(2) tbody td`).each(function (i) {
+                                json[num]["영업활동에 대한 조건 및 제한"][0]["가맹계약 기간"]["계약기간"][temp__th[i]] = $(this).text().replace(/\s/g, '');
+                            });
+                        }
+
+                        render() {
+                            this.generalPresent__1();
+                            this.generalPresent__2();
+                            this.generalPresent__3();
+                            this.generalPresent__4();
+
+                            this.financeState();
+
+                            this.staffNum();
+
+                            this.affiliateNum();
+
+                            this.openingDay();
+
+                            this.headOffice__state();
+
+                            this.currentState();
+
+                            this.sales();
+
+                            this.headOfficeNum();
+
+                            this.salesHistory();
+
+                            this.shareGold();
+
+                            this.lawViolations();
+
+                            this.liabilityAmount();
+
+                            this.interiorCost();
+
+                            this.contractPeriod();
+                        }
                     }
 
-                    headOfficeNum() {
-                        let temp__th = "";
-                        $(`.box_flip:nth-child(2) .table:nth-child(10) thead tr th:nth-child(1)`).each(function () {
-                            temp__th = $(this).text();
-                        });
-                        $(`.box_flip:nth-child(2) .table:nth-child(10) thead tr td`).each(function () {
-                            json[num]["가맹본부의 가맹사업 현황"][4]["가맹지역본부 수"][temp__th] = $(this).text().replace(/\s/g, '');
-                        });
-                    }
-
-                    salesHistory() {
-                        let temp__th = [];
-
-                        $(`.box_flip:nth-child(2) .table:nth-child(12) thead tr th`).each(function () {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(2) .table:nth-child(12) tbody tr td`).each(function (i) {
-                            json[num]["가맹본부의 가맹사업 현황"][5]["광고·판촉비 내역"][temp__th[i]] = $(this).text().replace(/\s/g, '');
-                        });
-                    }
-
-                    shareGold() {
-                        let temp__th = ["형태", "예치 가맹금"];
-
-                        $(`.box_flip:nth-child(2) .table:nth-child(14) td`).each(function (i) {
-                            json[num]["가맹본부의 가맹사업 현황"][6]["가맹금사업자의 부담금"][temp__th[i]] = $(this).text().replace(/\s/g, '');
-                        });
-                    }
-
-                    lawViolations() {
-                        let temp__th = [];
-
-                        $(`.box_flip:nth-child(3) .table:nth-child(2) th`).each(function (i) {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(3) .table:nth-child(2) td`).each(function (i) {
-                            json[num]["가맹본부와 그 임원의 법 위반 사실"][0]["최근 3년간 법 위반 사실"][temp__th[i]] = $(this).text().replace(/\s/g, '');
-                        });
-                    }
-
-                    liabilityAmount() {
-                        let temp__th = [];
-                        $(`.box_flip:nth-child(4) .table:nth-child(2) th`).each(function (i) {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(4) .table:nth-child(2) td`).each(function (i) {
-                            json[num]["가맹점사업자의 부담"][0]["가맹점사업자의 부담금"][temp__th[i]] = $(this).text().replace(/\s/g, '');
-                        });
-                    }
-
-                    interiorCost() {
-                        let temp__th = [];
-                        $(`.box_flip:nth-child(4) .table:nth-child(4) thead th`).each(function (i) {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(4) .table:nth-child(4) tbody td`).each(function (i) {
-                            json[num]["가맹점사업자의 부담"][1]["인테리어 비용"][temp__th[i]] = $(this).text().replace(/\s/g, '');
-                        });
-                    }
-
-                    contractPeriod() {
-                        let temp__th = [];
-
-                        $(`.box_flip:nth-child(5) .table:nth-child(2) thead tr:nth-child(2) th`).each(function (i) {
-                            temp__th.push($(this).text());
-                        });
-                        $(`.box_flip:nth-child(5) .table:nth-child(2) tbody td`).each(function (i) {
-                            json[num]["영업활동에 대한 조건 및 제한"][0]["가맹계약 기간"]["계약기간"][temp__th[i]] = $(this).text().replace(/\s/g, '');
-                        });
-                    }
-
-                    render() {
-                        this.generalPresent__1();
-                        this.generalPresent__2();
-                        this.generalPresent__3();
-                        this.generalPresent__4();
-
-                        this.financeState();
-
-                        this.staffNum();
-
-                        this.affiliateNum();
-
-                        this.openingDay();
-
-                        this.headOffice__state();
-
-                        this.currentState();
-
-                        this.sales();
-
-                        this.headOfficeNum();
-
-                        this.salesHistory();
-
-                        this.shareGold();
-
-                        this.lawViolations();
-
-                        this.liabilityAmount();
-
-                        this.interiorCost();
-
-                        this.contractPeriod();
-                    }
+                    const crawling = new Crawling();
+                    crawling.render();
+                    console.log(num);
+                    next();
                 }
-
-                const crawling = new Crawling();
-                crawling.render();
-                console.log(num);
-                next();
             });
         });
     }

@@ -974,7 +974,7 @@ if(cluster.isMaster){
                             temp__th.push(keys[i + 11]);
                         });
 
-                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(2) td.cell_left`).text().replace(/(\s*)/g, ''));
+                        temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(2) td.cell_left`).text().replace(/(^\s*)|(\s*$)/g, ''));
                         temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(2)`).text().replace(/(\s*)/g, ''));
                         temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(4)`).text().replace(/(\s*)/g, ''));
                         temp__td.push($(`.box_flip:nth-child(1) .table:nth-child(3) > tr:nth-child(3) td.cell_left:nth-child(6)`).text().replace(/(\s*)/g, ''));
